@@ -19,16 +19,18 @@ public abstract class ModeratorTimeBasedPunishmentCommand extends TimeBasedPunis
     @Override
     public void execute() {
         if (StringUtil.isBlank(command)) {
+            LOGGER.info("Command is empty");
             MinecraftUtil.sendMessageToPlayer("команда не может быть пустым.");
             return;
         }
-        if (playerNickname.isEmpty()) {
+        if (StringUtil.isBlank(playerNickname)) {
+            LOGGER.info("PlayerNickname is empty");
             MinecraftUtil.sendMessageToPlayer("Никнейм игрока не может быть пустым.");
             return;
         }
         String executionCommand = String.format(COMMAND_TEMPLATE, command, playerNickname, punishmentTime, reason);
 
-        LOGGER.info("[ModeratorTimeBasedPunishmentCommand] Built command: {}", executionCommand);
+        LOGGER.info("Built command: {}", executionCommand);
         MinecraftUtil.sendPlayerMessageToChat(executionCommand);
     }
 }

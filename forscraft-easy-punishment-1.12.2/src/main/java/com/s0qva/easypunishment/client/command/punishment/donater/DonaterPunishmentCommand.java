@@ -1,6 +1,7 @@
 package com.s0qva.easypunishment.client.command.punishment.donater;
 
 import com.s0qva.easypunishment.client.command.punishment.PunishmentCommand;
+import com.s0qva.easypunishment.client.util.basic.StringUtil;
 import com.s0qva.easypunishment.client.util.minecraft.MinecraftUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,17 +20,19 @@ public abstract class DonaterPunishmentCommand extends PunishmentCommand {
 
     @Override
     public void execute() {
-        if (playerNickname.isEmpty()) {
+        if (StringUtil.isBlank(playerNickname)) {
+            LOGGER.info("PlayerNickname is empty");
             MinecraftUtil.sendMessageToPlayer("Никнейм игрока не может быть пустым.");
             return;
         }
-        if (rulePoint.isEmpty()) {
+        if (StringUtil.isBlank(rulePoint)) {
+            LOGGER.info("RulePoint is empty");
             MinecraftUtil.sendMessageToPlayer("Пункт правил не может быть пустым.");
             return;
         }
         String executionCommand = String.format(COMMAND_TEMPLATE, command, playerNickname, rulePoint, reason);
 
-        LOGGER.info("[DonaterPunishmentCommand] Built command: {}", executionCommand);
+        LOGGER.info("Built command: {}", executionCommand);
         MinecraftUtil.sendPlayerMessageToChat(executionCommand);
     }
 }

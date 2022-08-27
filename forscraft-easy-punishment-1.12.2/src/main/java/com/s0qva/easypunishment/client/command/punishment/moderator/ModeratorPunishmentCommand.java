@@ -1,6 +1,7 @@
 package com.s0qva.easypunishment.client.command.punishment.moderator;
 
 import com.s0qva.easypunishment.client.command.punishment.PunishmentCommand;
+import com.s0qva.easypunishment.client.util.basic.StringUtil;
 import com.s0qva.easypunishment.client.util.minecraft.MinecraftUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,13 +18,14 @@ public abstract class ModeratorPunishmentCommand extends PunishmentCommand {
 
     @Override
     public void execute() {
-        if (playerNickname.isEmpty()) {
+        if (StringUtil.isBlank(playerNickname)) {
+            LOGGER.info("PlayerNickname is empty");
             MinecraftUtil.sendMessageToPlayer("Никнейм игрока не может быть пустым.");
             return;
         }
         String executionCommand = String.format(COMMAND_TEMPLATE, command, playerNickname, reason);
 
-        LOGGER.info("[ModeratorPunishmentCommand] Built command: {}", executionCommand);
+        LOGGER.info("Built command: {}", executionCommand);
         MinecraftUtil.sendPlayerMessageToChat(executionCommand);
     }
 }

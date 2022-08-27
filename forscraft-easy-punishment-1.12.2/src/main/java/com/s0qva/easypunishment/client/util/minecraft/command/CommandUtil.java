@@ -14,7 +14,7 @@ public final class CommandUtil {
 
     public static void execute(Command command) {
         if (Objects.isNull(command)) {
-            LOGGER.error("[CommandUtil.execute] Received command is null");
+            LOGGER.error("Received command is null");
             throw new RuntimeException();
         }
         command.execute();

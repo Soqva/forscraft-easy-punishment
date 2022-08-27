@@ -53,7 +53,7 @@ public final class MinecraftUtil {
         EntityPlayerSP currentPlayer = obtainCurrentPlayer();
 
         if (Objects.isNull(currentPlayer)) {
-            LOGGER.warn("[MinecraftUtil.sendMessage] player is null");
+            LOGGER.warn("player is null");
             return;
         }
         currentPlayer.sendMessage(message);
@@ -73,7 +73,7 @@ public final class MinecraftUtil {
         EntityPlayerSP currentPlayer = obtainCurrentPlayer();
 
         if (Objects.isNull(currentPlayer)) {
-            LOGGER.warn("[MinecraftUtil.sendMessage] player is null");
+            LOGGER.warn("player is null");
             return;
         }
         currentPlayer.sendChatMessage(messageText);

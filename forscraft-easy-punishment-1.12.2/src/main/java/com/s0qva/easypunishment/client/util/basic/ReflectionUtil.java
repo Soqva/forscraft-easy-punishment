@@ -25,7 +25,7 @@ public final class ReflectionUtil {
 
             return foundField.get(object);
         } catch (NoSuchFieldException | IllegalAccessException exception) {
-            LOGGER.error("[ReflectionUtil.obtainObject] An exception occurred: {}", exception.getMessage());
+            LOGGER.error("An exception occurred: {}", exception.getMessage());
             return null;
         }
     }
@@ -62,8 +62,7 @@ public final class ReflectionUtil {
             }
             return desiredList;
         } catch (ClassCastException exception) {
-            LOGGER.error("(obtainList(52)) An exception occurred: {}", exception.getMessage());
-            LOGGER.error("An exception occurred: {}", object);
+            LOGGER.error("An exception occurred: {}", exception.getMessage());
             return null;
         }
     }
@@ -77,8 +76,7 @@ public final class ReflectionUtil {
         try {
             return (Integer) obtainedObject;
         } catch (ClassCastException exception) {
-            LOGGER.error("(obtainInteger(67)) An exception occurred: {}", exception.getMessage());
-            LOGGER.error("An exception occurred: {}", object);
+            LOGGER.error("An exception occurred: {}", exception.getMessage());
             return null;
         }
     }
@@ -90,7 +88,7 @@ public final class ReflectionUtil {
             allowAccess(field);
             field.set(object, value);
         } catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException exception) {
-            LOGGER.error("[ReflectionUtil.setPrivateValue] An exception occurred: {}", exception.getMessage());
+            LOGGER.error("An exception occurred: {}", exception.getMessage());
             throw new RuntimeException(exception);
         }
     }

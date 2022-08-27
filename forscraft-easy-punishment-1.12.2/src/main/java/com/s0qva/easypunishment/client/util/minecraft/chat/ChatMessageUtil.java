@@ -1,5 +1,6 @@
 package com.s0qva.easypunishment.client.util.minecraft.chat;
 
+import com.google.common.collect.Sets;
 import com.s0qva.easypunishment.client.util.minecraft.MinecraftUtil;
 import com.s0qva.easypunishment.client.util.basic.CharacterUtil;
 import com.s0qva.easypunishment.client.util.basic.ReflectionUtil;
@@ -15,8 +16,18 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public final class ChatMessageUtil {
+    public static final Set<String> REMOVABLE_CHARACTERS = Sets.newHashSet(
+            StringUtil.LEFT_SQUARE_BRACKET,
+            StringUtil.RIGHT_SQUARE_BRACKET,
+            StringUtil.COMMA,
+            StringUtil.DOT,
+            StringUtil.LEFT_BRACE,
+            StringUtil.RIGHT_BRACE,
+            StringUtil.EXCLAMATION_MARK
+    );
     public static final String FORMATTED_CHAT_MESSAGE_REGEX = "§[0-9a-zA-Z]";
     private static final Logger LOGGER = LogManager.getLogger(ChatMessageUtil.class);
 
@@ -108,8 +119,14 @@ public final class ChatMessageUtil {
                 leftSpaceCharacterIndex--;
             }
             desiredCharIndex = leftSpaceCharacterIndex + 1;
+            String unformattedChatWord = StringUtil.substring(text, desiredCharIndex, rightSpaceCharacterIndex);
+            String formattedChatWord = StringUtil.EMPTY;
 
-            return StringUtil.substring(text, desiredCharIndex, rightSpaceCharacterIndex);
+            for (String removableCharacter : REMOVABLE_CHARACTERS) {
+                formattedChatWord = StringUtil.replaceAll(unformattedChatWord, removableCharacter, StringUtil.EMPTY);
+                unformattedChatWord = formattedChatWord;
+            }
+            return formattedChatWord;
         } catch (StringIndexOutOfBoundsException exception) {
             LOGGER.error("An exception occurred: {}", exception.getMessage());
             return StringUtil.EMPTY;

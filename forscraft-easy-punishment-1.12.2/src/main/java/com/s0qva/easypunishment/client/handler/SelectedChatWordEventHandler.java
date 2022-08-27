@@ -24,14 +24,13 @@ public class SelectedChatWordEventHandler {
         if (!TIMER.canPerform()) {
             return;
         }
-
         GuiNewChat chatGUI = MinecraftUtil.obtainGuiNewChat();
         int xSelectedCord = event.getXSelectedCord();
         int ySelectedCord = event.getYSelectedCord();
         String selectedWord = ChatMessageUtil.obtainSelectedChatWord(chatGUI, xSelectedCord, ySelectedCord);
 
         if (StringUtil.isBlank(selectedWord)) {
-            LOGGER.warn("Selected word is blank");
+            LOGGER.warn("SelectedWord is blank");
             return;
         }
         TIMER.restrictRepeats();
