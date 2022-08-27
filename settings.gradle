@@ -1,2 +1,17 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        maven {
+            url = 'https://maven.minecraftforge.net/'
+        }
+        maven {
+            url = "https://repo.essential.gg/repository/maven-public"
+        }
+    }
+}
+
 rootProject.name = 'forscraft-easy-punishment'
+
+include 'forscraft-easy-punishment-1.12.2'
 
