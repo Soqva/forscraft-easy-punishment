@@ -1,5 +1,6 @@
 package com.s0qva.easypunishment.config
 
+import com.s0qva.easypunishment.config.category.common.ModStateCategoryConfig
 import com.s0qva.easypunishment.config.category.common.PardonCategoryConfig
 import com.s0qva.easypunishment.config.category.donater.DonaterBanCategoryConfig
 import com.s0qva.easypunishment.config.category.donater.DonaterKickCategoryConfig
@@ -22,6 +23,7 @@ object EasyPunishmentGuiConfig : Vigilant(
     private val donaterMuteCategoryConfig = DonaterMuteCategoryConfig
     private val donaterKickCategoryConfig = DonaterKickCategoryConfig
     private val pardonCategoryConfig = PardonCategoryConfig
+    private val modStateCategoryConfig = ModStateCategoryConfig
 
     init {
         initialize()
@@ -34,6 +36,7 @@ object EasyPunishmentGuiConfig : Vigilant(
         donaterMuteCategoryConfig.init()
         donaterKickCategoryConfig.init()
         pardonCategoryConfig.init()
+        modStateCategoryConfig.init()
     }
 
     fun passPlayerNickname(playerNickname: String) {
@@ -45,5 +48,9 @@ object EasyPunishmentGuiConfig : Vigilant(
         donaterMuteCategoryConfig.passPlayerNickname(playerNickname)
         donaterKickCategoryConfig.passPlayerNickname(playerNickname)
         pardonCategoryConfig.passPlayerNickname(playerNickname)
+    }
+
+    fun isEnabled(): Boolean {
+        return modStateCategoryConfig.isEnabled()
     }
 }

@@ -4,6 +4,7 @@ import com.s0qva.easypunishment.EasyPunishment;
 import com.s0qva.easypunishment.client.event.SelectedChatWordEvent;
 import com.s0qva.easypunishment.client.mouse.MouseButtonIndex;
 import com.s0qva.easypunishment.client.util.minecraft.MinecraftUtil;
+import com.s0qva.easypunishment.config.EasyPunishmentGuiConfig;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiNewChat;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -17,7 +18,7 @@ public class GuiChatMouseLeftButtonClickEventHandler {
 
     @SubscribeEvent
     public static void handleGuiChatMouseLeftButtonClickEvent(GuiScreenEvent.MouseInputEvent event) {
-        if (!(event.getGui() instanceof GuiChat)) {
+        if (!(event.getGui() instanceof GuiChat) || !EasyPunishmentGuiConfig.INSTANCE.isEnabled()) {
             return;
         }
         GuiNewChat chatGUI = MinecraftUtil.obtainGuiNewChat();
